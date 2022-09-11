@@ -1,0 +1,26 @@
+type Access {
+    token: String
+    expiresIn: Int
+}
+
+type AccessInfo {
+    email: String
+    info: String
+}
+
+input AccessInput {
+    email: String
+    info: String
+}
+
+extend type Query {
+    readToken(
+        token: String
+    ): AccessInfo
+}
+
+extend type Mutation {
+    generateToken(
+        input: AccessInput
+    ): Access
+}

@@ -1,0 +1,47 @@
+type User {
+    id: Int
+    firstName: String
+    lastName: String
+    email: String!
+    password: String
+    role: Int
+}
+
+type UserClaim {
+    id: Int
+    firstName: String
+    lastName: String
+    email: String!
+    token: String!
+    expiresIn: Int!
+}
+
+input UserInput {
+    firstName: String
+    lastName: String
+    email: String!
+    password: String
+    role: Int
+}
+
+extend type Query {
+    loginUser(
+        email: String!
+        password: String!
+    ): UserClaim
+}
+
+extend type Mutation {
+    createUser(
+        input: UserInput
+    ): User
+
+    updateUser(
+        id: Int!
+        input: UserInput
+    ): User
+
+    removeUser(
+        id: Int!
+    ): Boolean
+}
